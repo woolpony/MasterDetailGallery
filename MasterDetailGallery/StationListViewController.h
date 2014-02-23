@@ -9,19 +9,19 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
-#import "AddClockViewController.h"
+
 
 @class Clock;
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate,ClockAddDelegate>{
 
-
-@private
-    NSFetchedResultsController *fetchedResultsController;
-    NSManagedObjectContext *managedObjectContext;
-
-}
+@interface StationListViewController : UITableViewController <NSFetchedResultsControllerDelegate>{}
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) Clock *clock;
+@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSMutableArray *stations;
+
+
+-(void) configData;
 
 @end

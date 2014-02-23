@@ -6,18 +6,31 @@
 //  Copyright (c) 2014年 pony wu. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "Clock.h"
 #import "StationListViewController.h"
-#import "AddClockViewController.h"
+#import "DetailViewController.h"
+#import "Clock.h"
+#import "Station.h"
 
-@interface MasterViewController ()
+@interface StationListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation MasterViewController
+@implementation StationListViewController
 
-@synthesize managedObjectContext, fetchedResultsController;
+@synthesize clock, stations;
+
+- (void)setDetailItem:(id)newDetailItem
+{
+    if (_detailItem != newDetailItem) {
+        _detailItem = newDetailItem;
+        clock = _detailItem;
+        
+        // Update the view.
+        id delegate = [[UIApplication sharedApplication] delegate];
+        self.managedObjectContext = [delegate managedObjectContext];
+//        [self init];
+    }
+}
 
 - (void)awakeFromNib
 {
@@ -28,10 +41,38 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
+    NSArray *buttonArray = [[NSArray alloc] initWithObjects:addButton,self.editButtonItem,nil];
+    
+    self.navigationItem.rightBarButtonItems = buttonArray;
+    self.navigationItem.title = clock.clockName;
+    
+    [self configData];
+    
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self configData];
+    [self.tableView reloadData];
+}
+
+-(void) configData
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"stationName" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+	
+	NSMutableArray *sortedStations = [[NSMutableArray alloc] initWithArray:[clock.clocktostation allObjects]];
+	[sortedStations sortUsingDescriptors:sortDescriptors];
+	self.stations = sortedStations;
+}
+
+-(void)showClock:(id) sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,25 +83,14 @@
 
 - (void)insertNewObject:(id)sender
 {
-
-    AddClockViewController *addController = [[AddClockViewController alloc] initWithNibName:@"AddClockView" bundle:nil];
-    addController.delegate = self;
-	
-	Clock *clock = [NSEntityDescription insertNewObjectForEntityForName:@"Clock" inManagedObjectContext:self.managedObjectContext];
-	addController.clock = clock;
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addController];
-    [self presentViewController:navigationController animated:YES completion:nil];
-    
-    
-    //    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
 //    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
 //    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 //    
 //    // If appropriate, configure the new managed object.
 //    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-//    [newManagedObject setValue:@"New Clock" forKey:@"clockName"];
-//    [newManagedObject setValue:[NSDate date] forKey:@"createtime"];
+//    [newManagedObject setValue:@"New Station" forKey:@"stationName"];
+//    [newManagedObject setValue:[NSDate date] forKey:@"createTime"];
 //    
 //    // Save the context.
 //    NSError *error = nil;
@@ -70,24 +100,32 @@
 //        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //        abort();
 //    }
+    
+    UIStoryboard * storyboard = [ UIStoryboard storyboardWithName:@"Main" bundle:nil ];
+    
+    DetailViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController" ];
+    nextViewController.clock = self.clock;
+    nextViewController.textView.text = @"";
+    
+    [self.navigationController pushViewController:nextViewController animated:YES];
+    
 }
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return [clock.clocktostation count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StationCell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -101,16 +139,18 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
-        NSError *error = nil;
-        if (![context save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
+        Station *station = [stations objectAtIndex:indexPath.row];
+        [clock removeClocktostationObject:station];
+        [stations removeObject:station];
+        
+        
+
+        NSManagedObjectContext *context = station.managedObjectContext;
+    
+        [context deleteObject:station];
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }   
 }
 
@@ -122,33 +162,32 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showStation"]) {
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        NSManagedObject *object = [self.stations objectAtIndex:indexPath.row];
+        ((DetailViewController *)[segue destinationViewController]).clock = self.clock;
         [[segue destinationViewController] setDetailItem:object];
     }
 }
-
-
 
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (fetchedResultsController != nil) {
-        return fetchedResultsController;
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Clock" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"clockName" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"stationName" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -167,8 +206,8 @@
 	    abort();
 	}
     
-    return fetchedResultsController;
-}
+    return _fetchedResultsController;
+}    
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
@@ -232,15 +271,11 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"clockName"] description];
+    Station *station = [stations objectAtIndex:indexPath.row];
+    cell.textLabel.text = station.stationName;
+    cell.imageView.image = station.thumbnailimage;
+    
 }
 
-- (void)clockAddViewController:(AddClockViewController *)addClockViewController didAddClock:(Clock *)clock
-{
-
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-}
 
 @end

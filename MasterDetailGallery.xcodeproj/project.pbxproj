@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049E73A818B64DF6008F07AC /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E73A718B64DF6008F07AC /* Station.m */; };
+		049E73AB18B64DF7008F07AC /* Clock.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E73AA18B64DF7008F07AC /* Clock.m */; };
+		049EE4D118B8BE4600C14F78 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049EE4D018B8BE4500C14F78 /* PhotoViewController.m */; };
+		04A12DEA18AFA70200F303A3 /* StationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A12DE918AFA70200F303A3 /* StationListViewController.m */; };
+		04A12DEE18B0A7EC00F303A3 /* pony.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04A12DED18B0A7EC00F303A3 /* pony.jpg */; };
+		04A12DF018B0A8CB00F303A3 /* pony_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04A12DEF18B0A8CB00F303A3 /* pony_full.jpg */; };
 		04C810A518AE544B003E7610 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A418AE544B003E7610 /* Foundation.framework */; };
 		04C810A718AE544B003E7610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A618AE544B003E7610 /* CoreGraphics.framework */; };
 		04C810A918AE544B003E7610 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A818AE544B003E7610 /* UIKit.framework */; };
@@ -25,6 +31,9 @@
 		04C810CF18AE544B003E7610 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810AA18AE544B003E7610 /* CoreData.framework */; };
 		04C810D718AE544B003E7610 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04C810D518AE544B003E7610 /* InfoPlist.strings */; };
 		04C810D918AE544B003E7610 /* MasterDetailGalleryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C810D818AE544B003E7610 /* MasterDetailGalleryTests.m */; };
+		04EC84B318B24E2300D8E256 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04EC84B218B24E2300D8E256 /* Default@2x.png */; };
+		04F29CC718B3A8B800AC30CF /* AddClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F29CC518B3A8B800AC30CF /* AddClockViewController.m */; };
+		04F29CC818B3A8B800AC30CF /* AddClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F29CC618B3A8B800AC30CF /* AddClockView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +47,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		049E73A618B64DF6008F07AC /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		049E73A718B64DF6008F07AC /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		049E73A918B64DF7008F07AC /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		049E73AA18B64DF7008F07AC /* Clock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clock.m; sourceTree = "<group>"; };
+		049EE4CF18B8BE4500C14F78 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		049EE4D018B8BE4500C14F78 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		04A12DE818AFA6F100F303A3 /* StationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListViewController.h; sourceTree = "<group>"; };
+		04A12DE918AFA70200F303A3 /* StationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListViewController.m; sourceTree = "<group>"; };
+		04A12DED18B0A7EC00F303A3 /* pony.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pony.jpg; sourceTree = "<group>"; };
+		04A12DEF18B0A8CB00F303A3 /* pony_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pony_full.jpg; sourceTree = "<group>"; };
 		04C810A118AE544B003E7610 /* MasterDetailGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterDetailGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C810A418AE544B003E7610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04C810A618AE544B003E7610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,6 +80,10 @@
 		04C810D418AE544B003E7610 /* MasterDetailGalleryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MasterDetailGalleryTests-Info.plist"; sourceTree = "<group>"; };
 		04C810D618AE544B003E7610 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04C810D818AE544B003E7610 /* MasterDetailGalleryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterDetailGalleryTests.m; sourceTree = "<group>"; };
+		04EC84B218B24E2300D8E256 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		04F29CC418B3A8B800AC30CF /* AddClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClockViewController.h; sourceTree = "<group>"; };
+		04F29CC518B3A8B800AC30CF /* AddClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClockViewController.m; sourceTree = "<group>"; };
+		04F29CC618B3A8B800AC30CF /* AddClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddClockView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +151,21 @@
 				04C810B818AE544B003E7610 /* Main.storyboard */,
 				04C810BE18AE544B003E7610 /* MasterViewController.h */,
 				04C810BF18AE544B003E7610 /* MasterViewController.m */,
+				04F29CC418B3A8B800AC30CF /* AddClockViewController.h */,
+				04F29CC518B3A8B800AC30CF /* AddClockViewController.m */,
+				04F29CC618B3A8B800AC30CF /* AddClockView.xib */,
+				04A12DE818AFA6F100F303A3 /* StationListViewController.h */,
+				04A12DE918AFA70200F303A3 /* StationListViewController.m */,
 				04C810C118AE544B003E7610 /* DetailViewController.h */,
 				04C810C218AE544B003E7610 /* DetailViewController.m */,
 				04C810C418AE544B003E7610 /* Images.xcassets */,
 				04C810BB18AE544B003E7610 /* MasterDetailGallery.xcdatamodeld */,
+				049E73A618B64DF6008F07AC /* Station.h */,
+				049E73A718B64DF6008F07AC /* Station.m */,
+				049E73A918B64DF7008F07AC /* Clock.h */,
+				049E73AA18B64DF7008F07AC /* Clock.m */,
+				049EE4CF18B8BE4500C14F78 /* PhotoViewController.h */,
+				049EE4D018B8BE4500C14F78 /* PhotoViewController.m */,
 				04C810AD18AE544B003E7610 /* Supporting Files */,
 			);
 			path = MasterDetailGallery;
@@ -140,6 +174,9 @@
 		04C810AD18AE544B003E7610 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04EC84B218B24E2300D8E256 /* Default@2x.png */,
+				04A12DEF18B0A8CB00F303A3 /* pony_full.jpg */,
+				04A12DED18B0A7EC00F303A3 /* pony.jpg */,
 				04C810AE18AE544B003E7610 /* MasterDetailGallery-Info.plist */,
 				04C810AF18AE544B003E7610 /* InfoPlist.strings */,
 				04C810B218AE544B003E7610 /* main.m */,
@@ -213,6 +250,14 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "pony wu";
 				TargetAttributes = {
+					04C810A018AE544B003E7610 = {
+						DevelopmentTeam = VTFZ7W8QH9;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
+					};
 					04C810C918AE544B003E7610 = {
 						TestTargetID = 04C810A018AE544B003E7610;
 					};
@@ -242,9 +287,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EC84B318B24E2300D8E256 /* Default@2x.png in Resources */,
 				04C810C518AE544B003E7610 /* Images.xcassets in Resources */,
+				04A12DF018B0A8CB00F303A3 /* pony_full.jpg in Resources */,
+				04A12DEE18B0A7EC00F303A3 /* pony.jpg in Resources */,
 				04C810B118AE544B003E7610 /* InfoPlist.strings in Resources */,
 				04C810BA18AE544B003E7610 /* Main.storyboard in Resources */,
+				04F29CC818B3A8B800AC30CF /* AddClockView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,11 +312,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049E73AB18B64DF7008F07AC /* Clock.m in Sources */,
 				04C810C318AE544B003E7610 /* DetailViewController.m in Sources */,
 				04C810C018AE544B003E7610 /* MasterViewController.m in Sources */,
+				04F29CC718B3A8B800AC30CF /* AddClockViewController.m in Sources */,
 				04C810B718AE544B003E7610 /* AppDelegate.m in Sources */,
+				04A12DEA18AFA70200F303A3 /* StationListViewController.m in Sources */,
 				04C810B318AE544B003E7610 /* main.m in Sources */,
 				04C810BD18AE544B003E7610 /* MasterDetailGallery.xcdatamodeld in Sources */,
+				049E73A818B64DF6008F07AC /* Station.m in Sources */,
+				049EE4D118B8BE4600C14F78 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +427,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Luis Silva (G3NDX2KF9Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -394,10 +449,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetailGallery/MasterDetailGallery-Prefix.pch";
 				INFOPLIST_FILE = "MasterDetailGallery/MasterDetailGallery-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,10 +467,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetailGallery/MasterDetailGallery-Prefix.pch";
 				INFOPLIST_FILE = "MasterDetailGallery/MasterDetailGallery-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -476,6 +540,7 @@
 				04C810DE18AE544B003E7610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04C810DF18AE544B003E7610 /* Build configuration list for PBXNativeTarget "MasterDetailGalleryTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +549,7 @@
 				04C810E118AE544B003E7610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

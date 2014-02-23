@@ -8,9 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@class Clock;
+@class Station;
+@interface DetailViewController : UIViewController<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scview;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
+
+
+
+
+@property (strong, nonatomic) Clock *clock;
+@property (strong, nonatomic) Station *station;
+@property (strong, nonatomic) Station *oldstation;
+
+- (IBAction)buttonPush:(UIButton *)sender;
+- (IBAction)imageButtonPush:(id)sender;
+
+-(void)save;
+-(void)cancel;
+-(void)textViewEditingEnd;
 @end
+
