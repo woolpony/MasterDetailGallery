@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		049E73A818B64DF6008F07AC /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E73A718B64DF6008F07AC /* Station.m */; };
 		049E73AB18B64DF7008F07AC /* Clock.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E73AA18B64DF7008F07AC /* Clock.m */; };
 		049EE4D118B8BE4600C14F78 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049EE4D018B8BE4500C14F78 /* PhotoViewController.m */; };
 		04A0C4EB18BA4A3500E090B8 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A0C4EA18BA4A3500E090B8 /* camera.png */; };
 		04A12DEA18AFA70200F303A3 /* StationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A12DE918AFA70200F303A3 /* StationListViewController.m */; };
 		04A12DEE18B0A7EC00F303A3 /* pony.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04A12DED18B0A7EC00F303A3 /* pony.jpg */; };
 		04A12DF018B0A8CB00F303A3 /* pony_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04A12DEF18B0A8CB00F303A3 /* pony_full.jpg */; };
+		04AB7AC618C3848900962793 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB7AC518C3848900962793 /* Station.m */; };
+		04AB7AC918C3848A00962793 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB7AC818C3848A00962793 /* Image.m */; };
 		04C810A518AE544B003E7610 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A418AE544B003E7610 /* Foundation.framework */; };
 		04C810A718AE544B003E7610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A618AE544B003E7610 /* CoreGraphics.framework */; };
 		04C810A918AE544B003E7610 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C810A818AE544B003E7610 /* UIKit.framework */; };
@@ -52,8 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		049E73A618B64DF6008F07AC /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		049E73A718B64DF6008F07AC /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 		049E73A918B64DF7008F07AC /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		049E73AA18B64DF7008F07AC /* Clock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clock.m; sourceTree = "<group>"; };
 		049EE4CF18B8BE4500C14F78 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -63,6 +62,10 @@
 		04A12DE918AFA70200F303A3 /* StationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListViewController.m; sourceTree = "<group>"; };
 		04A12DED18B0A7EC00F303A3 /* pony.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pony.jpg; sourceTree = "<group>"; };
 		04A12DEF18B0A8CB00F303A3 /* pony_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pony_full.jpg; sourceTree = "<group>"; };
+		04AB7AC418C3848900962793 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		04AB7AC518C3848900962793 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		04AB7AC718C3848A00962793 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		04AB7AC818C3848A00962793 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		04C810A118AE544B003E7610 /* ClockInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClockInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C810A418AE544B003E7610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04C810A618AE544B003E7610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -169,9 +172,11 @@
 				04C810C118AE544B003E7610 /* DetailViewController.h */,
 				04C810C218AE544B003E7610 /* DetailViewController.m */,
 				04C810C418AE544B003E7610 /* Images.xcassets */,
+				04AB7AC718C3848A00962793 /* Image.h */,
+				04AB7AC818C3848A00962793 /* Image.m */,
+				04AB7AC518C3848900962793 /* Station.m */,
+				04AB7AC418C3848900962793 /* Station.h */,
 				04C810BB18AE544B003E7610 /* MasterDetailGallery.xcdatamodeld */,
-				049E73A618B64DF6008F07AC /* Station.h */,
-				049E73A718B64DF6008F07AC /* Station.m */,
 				049E73A918B64DF7008F07AC /* Clock.h */,
 				049E73AA18B64DF7008F07AC /* Clock.m */,
 				049EE4CF18B8BE4500C14F78 /* PhotoViewController.h */,
@@ -332,15 +337,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AB7AC918C3848A00962793 /* Image.m in Sources */,
 				049E73AB18B64DF7008F07AC /* Clock.m in Sources */,
 				04C810C318AE544B003E7610 /* DetailViewController.m in Sources */,
 				04C810C018AE544B003E7610 /* MasterViewController.m in Sources */,
 				04F29CC718B3A8B800AC30CF /* AddClockViewController.m in Sources */,
 				04C810B718AE544B003E7610 /* AppDelegate.m in Sources */,
 				04A12DEA18AFA70200F303A3 /* StationListViewController.m in Sources */,
+				04AB7AC618C3848900962793 /* Station.m in Sources */,
 				04C810B318AE544B003E7610 /* main.m in Sources */,
 				04C810BD18AE544B003E7610 /* MasterDetailGallery.xcdatamodeld in Sources */,
-				049E73A818B64DF6008F07AC /* Station.m in Sources */,
 				049EE4D118B8BE4600C14F78 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

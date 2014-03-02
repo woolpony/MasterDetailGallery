@@ -1,22 +1,18 @@
 //
-//  Station.m
+//  Image.m
 //  MasterDetailGallery
 //
 //  Created by pony wu on 14-3-2.
 //  Copyright (c) 2014年 pony wu. All rights reserved.
 //
 
+#import "Image.h"
 #import "Station.h"
-#import "Clock.h"
 
 
-@implementation Station
+@implementation Image
 
-@dynamic createTime;
 @dynamic image;
-@dynamic stationName;
-@dynamic thumbnailimage;
-@dynamic stationtoclock;
-@dynamic bigimage;
+@dynamic station;
 
 @end

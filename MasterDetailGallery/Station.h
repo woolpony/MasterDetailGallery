@@ -2,7 +2,7 @@
 //  Station.h
 //  MasterDetailGallery
 //
-//  Created by pony wu on 14-2-20.
+//  Created by pony wu on 14-3-2.
 //  Copyright (c) 2014年 pony wu. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSString * stationName;
 @property (nonatomic, retain) UIImage * thumbnailimage;
 @property (nonatomic, retain) Clock *stationtoclock;
+@property (nonatomic, retain) NSManagedObject *bigimage;
 
 @end

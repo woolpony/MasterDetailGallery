@@ -5,15 +5,21 @@
         <attribute name="createtime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="clocktostation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="stationtoclock" inverseEntity="Station" syncable="YES"/>
     </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="bigimage" inverseEntity="Station" syncable="YES"/>
+    </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="stationName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailimage" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="bigimage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="station" inverseEntity="Image" syncable="YES"/>
         <relationship name="stationtoclock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Clock" inverseName="clocktostation" inverseEntity="Clock" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Clock" positionX="0" positionY="-18" width="128" height="88"/>
-        <element name="Station" positionX="324" positionY="-45" width="128" height="120"/>
+        <element name="Clock" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Station" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Image" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
