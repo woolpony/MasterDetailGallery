@@ -10,7 +10,7 @@
 
 @class Clock;
 @class Station;
-@interface DetailViewController : UIViewController<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
+@interface DetailViewController : UIViewController<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

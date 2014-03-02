@@ -209,16 +209,58 @@
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    if (sender.tag == 310) {
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }else{
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        }
-    }
-    else{
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePicker animated:YES  completion:nil];
+    }else{
+        [self showActionSheet];
     }
+}
+
+-(void)showActionSheet
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Camera", @"Album",nil];
+    //actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionSheet showInView:self.view];
+
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self showCameraPickerController];
+            break;
+        case 1:
+            [self showAlbumPickerController];
+            break;
+        case 2:
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void) showCameraPickerController
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+    [self presentViewController:imagePicker animated:YES  completion:nil];
+}
+
+-(void) showAlbumPickerController
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:imagePicker animated:YES  completion:nil];
 }
 
@@ -237,9 +279,9 @@
 	CGSize size = selectedImage.size;
 	CGFloat ratio = 0;
 	if (size.width > size.height) {
-		ratio = 150.0 / size.width;
+		ratio = 200.0 / size.width;
 	} else {
-		ratio = 150.0 / size.height;
+		ratio = 200.0 / size.height;
 	}
 	CGRect rect = CGRectMake(0.0, 0.0, ratio * size.width, ratio * size.height);
 	
@@ -254,7 +296,7 @@
 }
 
 - (IBAction)imageButtonPush:(id)sender {
-    PhotoViewController *photoViewController = [[PhotoViewController alloc] init];
+    PhotoViewController *photoViewController = [PhotoViewController sharedInstance];
     photoViewController.hidesBottomBarWhenPushed = YES;
     photoViewController.station = self.station;
     [self.navigationController pushViewController:photoViewController animated:YES];

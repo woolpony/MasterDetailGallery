@@ -68,6 +68,7 @@
 	NSMutableArray *sortedStations = [[NSMutableArray alloc] initWithArray:[clock.clocktostation allObjects]];
 	[sortedStations sortUsingDescriptors:sortDescriptors];
 	self.stations = sortedStations;
+
 }
 
 -(void)showClock:(id) sender

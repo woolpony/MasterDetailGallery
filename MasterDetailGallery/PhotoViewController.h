@@ -13,4 +13,5 @@
 
 @property(nonatomic, retain) Station *station;
 @property(nonatomic, retain) UIImageView *imageView;
++ (id)sharedInstance;
 @end

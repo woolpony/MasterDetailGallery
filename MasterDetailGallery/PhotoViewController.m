@@ -18,6 +18,15 @@
 
 @synthesize imageView,station;
 
++ (id)sharedInstance {
+    static id sharedInstance;
+    @synchronized(self) {
+        if (!sharedInstance)
+            sharedInstance = [[PhotoViewController alloc] init];
+        return sharedInstance;
+    }
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,11 +60,16 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    imageView.image = nil;
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

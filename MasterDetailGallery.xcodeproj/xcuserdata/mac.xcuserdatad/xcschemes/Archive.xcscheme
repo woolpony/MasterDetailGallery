@@ -28,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "04C810C918AE544B003E7610"
-               BuildableName = "MasterDetailGalleryTests.xctest"
-               BlueprintName = "MasterDetailGalleryTests"
-               ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
