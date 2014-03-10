@@ -11,6 +11,7 @@
 #import "Station.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PhotoViewController.h"
+#import "ImageHelper-Files.h"
 
 @interface DetailViewController ()
 - (void)configureView;
@@ -18,7 +19,7 @@
 
 @implementation DetailViewController
 
-@synthesize clock, station, textView, detailItem, scview, imageButton,oldstation;
+@synthesize clock, station, textView, detailItem, scview, imageButton,oldstation, isGoToPickImage;
 
 #pragma mark - Managing the detail item
 
@@ -46,21 +47,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     // Configure the navigation bar
-    self.navigationItem.title = @"Clock Detail";
+    self.navigationItem.title = @"Station Detail";
     
-    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
-    self.navigationItem.leftBarButtonItem = cancelButtonItem;
-    
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
+    NSManagedObjectContext *context = [clock managedObjectContext];
 	
-    
-    
-    
-    //[self.view reloadInputViews];
-    
-	//[textView becomeFirstResponder];
-    
+	/*
+	 If there isn't an ingredient object, create and configure one.
+	 */
+    if (!station) {
+        self.station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:context];
+        [clock addClocktostationObject:station];
+    }
 }
 
 
@@ -81,6 +78,20 @@
     [self.view reloadInputViews];
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    if ((station.stationName != nil
+        && ![station.stationName isEqualToString:@""])
+        || station.imageName != nil)
+    {
+        [self save];
+    }
+    else
+    {
+        [self cancel];
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -120,21 +131,39 @@
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
 	}
-    
-    [self.navigationController popViewControllerAnimated:YES];
 };
+
 -(void)cancel
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(!station){
+        return;
+    }
+    
+    if(self.isGoToPickImage)
+    {
+        return;
+    }
+    
+    NSManagedObjectContext *context = [clock managedObjectContext];
+    [clock removeClocktostationObject:station];
+    /*
+	 Save the managed object context.
+	 */
+	NSError *error = nil;
+	if (![context save:&error]) {
+		/*
+		 Replace this implementation with code to handle the error appropriately.
+		 
+		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+		 */
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}
 };
 
 -(void)textViewEditingEnd
 {
-    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
-    self.navigationItem.leftBarButtonItem = cancelButtonItem;
-    
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
+    self.navigationItem.rightBarButtonItem = nil;
     
     [self.textView resignFirstResponder];
 
@@ -194,6 +223,7 @@
 
 - (IBAction)buttonPush:(UIButton *)sender {
     
+    isGoToPickImage = YES;
     NSManagedObjectContext *context = [clock managedObjectContext];
 	
 	/*
@@ -265,41 +295,63 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)selectedImage editingInfo:(NSDictionary *)editingInfo {
-	
-	// Delete any existing image.
-	UIImage *oldImage = station.image;
-	if (oldImage != nil) {
-		station.image = nil;
-	}
     
-	// Set the image for the image managed object.
-	station.image = selectedImage;
-	
-	// Create a thumbnail version of the image for the recipe object.
-	CGSize size = selectedImage.size;
-	CGFloat ratio = 0;
-	if (size.width > size.height) {
-		ratio = 200.0 / size.width;
-	} else {
-		ratio = 200.0 / size.height;
-	}
-	CGRect rect = CGRectMake(0.0, 0.0, ratio * size.width, ratio * size.height);
-	
-	UIGraphicsBeginImageContext(rect.size);
-	[selectedImage drawInRect:rect];
-	station.thumbnailimage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+    if (!station.imageName) {
+        station.imageName = [self findUniqueSaveFileName];
+    }
+    NSString *filePath = [[ImageHelper documentsFolder] stringByAppendingPathComponent:station.imageName];
     
+    //save the image to file
+    UIImage *bigi =[self getSmallImageFromBigImage:selectedImage resultImagesize:800];
+    [UIImagePNGRepresentation(bigi) writeToFile:filePath atomically:YES];
+    
+    
+    station.thumbnailimage = [self getSmallImageFromBigImage:selectedImage resultImagesize:200];
     self.imageButton.imageView.image = station.thumbnailimage;
 	
     [self dismissModalViewControllerAnimated:YES];
 }
 
+-(UIImage *)getSmallImageFromBigImage:(UIImage *)bigimage resultImagesize:(float)resultImagesize
+{
+    UIImage *returnImage = nil;
+    // Create a thumbnail version of the image for the recipe object.
+	CGSize size = bigimage.size;
+	CGFloat ratio = 0;
+	if (size.width > size.height) {
+		ratio = resultImagesize / size.width;
+	} else {
+		ratio = resultImagesize / size.height;
+	}
+	CGRect rect = CGRectMake(0.0, 0.0, ratio * size.width, ratio * size.height);
+	
+	UIGraphicsBeginImageContext(rect.size);
+	[bigimage drawInRect:rect];
+	returnImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+    
+    return returnImage;
+
+}
+
 - (IBAction)imageButtonPush:(id)sender {
-    PhotoViewController *photoViewController = [PhotoViewController sharedInstance];
-    photoViewController.hidesBottomBarWhenPushed = YES;
+    PhotoViewController *photoViewController = [[PhotoViewController alloc] initWithNibName:@"StationPhotoView" bundle:nil];
     photoViewController.station = self.station;
     [self.navigationController pushViewController:photoViewController animated:YES];
+}
+
+
+- (NSString *) findUniqueSaveFileName
+{
+	int i = 1;
+    int r;
+	NSString *path;
+	do {
+		// iterate until a name does not match an existing file
+	    path = [NSString stringWithFormat:@"%@/Documents/IMAGE_%04d.PNG", NSHomeDirectory(), i++];
+	} while ([[NSFileManager defaultManager] fileExistsAtPath:path]);
+	r = i - 1;
+	return [NSString stringWithFormat:@"IMAGE_%04d.PNG",r];
 }
 
 

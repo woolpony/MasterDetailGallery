@@ -14,7 +14,9 @@
 @interface Clock : NSManagedObject
 
 @property (nonatomic, retain) NSString * clockName;
+@property (nonatomic, retain) NSString * imageName;
 @property (nonatomic, retain) NSDate * createtime;
+@property (nonatomic, retain) UIImage * thumbNailImage;
 @property (nonatomic, retain) NSSet *clocktostation;
 @end
 

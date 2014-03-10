@@ -12,6 +12,7 @@
 @interface PhotoViewController : UIViewController
 
 @property(nonatomic, retain) Station *station;
-@property(nonatomic, retain) UIImageView *imageView;
-+ (id)sharedInstance;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *clockNameLabel;
+
 @end

@@ -11,13 +11,15 @@
 
 @class Clock;
 
+
+
 @interface Station : NSManagedObject
 
 @property (nonatomic, retain) NSDate * createTime;
-@property (nonatomic, retain) UIImage * image;
 @property (nonatomic, retain) NSString * stationName;
+@property (nonatomic, retain) NSString * imageName;
 @property (nonatomic, retain) UIImage * thumbnailimage;
 @property (nonatomic, retain) Clock *stationtoclock;
-@property (nonatomic, retain) NSManagedObject *bigimage;
 
 @end
+

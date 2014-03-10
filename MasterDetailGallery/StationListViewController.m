@@ -10,6 +10,8 @@
 #import "DetailViewController.h"
 #import "Clock.h"
 #import "Station.h"
+#import "ImageHelper-Files.h"
+#import "AddClockViewController.h"
 
 @interface StationListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -17,7 +19,7 @@
 
 @implementation StationListViewController
 
-@synthesize clock, stations;
+@synthesize clock, stations, tableHeaderView, imageButton, clockNameButton;
 
 - (void)setDetailItem:(id)newDetailItem
 {
@@ -49,6 +51,16 @@
     self.navigationItem.rightBarButtonItems = buttonArray;
     self.navigationItem.title = clock.clockName;
     
+    // Create and set the table header view.
+    if (tableHeaderView == nil) {
+        [[NSBundle mainBundle] loadNibNamed:@"StationListHeader" owner:self options:nil];
+        self.tableView.tableHeaderView = tableHeaderView;
+        self.tableView.allowsSelectionDuringEditing = YES;
+        
+        [self.imageButton setImage:clock.thumbNailImage forState:UIControlStateNormal];
+        [self.clockNameButton setTitle:clock.clockName forState:UIControlStateNormal];
+    }
+    
     [self configData];
     
     
@@ -56,8 +68,23 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [self.imageButton setImage:clock.thumbNailImage forState:UIControlStateNormal];
+    [self.clockNameButton setTitle:clock.clockName forState:UIControlStateNormal];
     [self configData];
     [self.tableView reloadData];
+}
+
+- (IBAction)tapheadButton:(id)sender {
+    if (self.tableView.editing) {
+        NSLog(@"Editing");
+        AddClockViewController *addController = [[AddClockViewController alloc] initWithNibName:@"AddClockView" bundle:nil];
+        addController.clock = self.clock;
+        
+        [self.navigationController pushViewController:addController animated:YES];
+    }
+    else{
+        NSLog(@"Not Editing");
+    }
 }
 
 -(void) configData
@@ -71,11 +98,6 @@
 
 }
 
--(void)showClock:(id) sender
-{
-    
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -84,23 +106,6 @@
 
 - (void)insertNewObject:(id)sender
 {
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-//    
-//    // If appropriate, configure the new managed object.
-//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-//    [newManagedObject setValue:@"New Station" forKey:@"stationName"];
-//    [newManagedObject setValue:[NSDate date] forKey:@"createTime"];
-//    
-//    // Save the context.
-//    NSError *error = nil;
-//    if (![context save:&error]) {
-//         // Replace this implementation with code to handle the error appropriately.
-//         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-//    }
     
     UIStoryboard * storyboard = [ UIStoryboard storyboardWithName:@"Main" bundle:nil ];
     
@@ -145,10 +150,18 @@
         [clock removeClocktostationObject:station];
         [stations removeObject:station];
         
-        
 
         NSManagedObjectContext *context = station.managedObjectContext;
-    
+        
+        NSString *filePath = [[ImageHelper documentsFolder] stringByAppendingPathComponent:station.imageName];
+        [ImageHelper listFile:[ImageHelper documentsFolder]];
+        
+        //delete file from documents directory
+        [ImageHelper removeFile:filePath];
+        //delete file from context
+        
+        [ImageHelper listFile:[ImageHelper documentsFolder]];
+        
         [context deleteObject:station];
         
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
@@ -160,6 +173,8 @@
     // The table view should not be re-orderable.
     return NO;
 }
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -277,6 +292,7 @@
     cell.imageView.image = station.thumbnailimage;
     
 }
+
 
 
 @end

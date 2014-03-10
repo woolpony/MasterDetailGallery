@@ -21,6 +21,12 @@
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) NSMutableArray *stations;
 
+@property (nonatomic, retain) IBOutlet UIView *tableHeaderView;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
+@property (weak, nonatomic) IBOutlet UIButton *clockNameButton;
+
+- (IBAction)tapheadButton:(id)sender;
+
 
 -(void) configData;
 

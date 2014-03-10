@@ -8,28 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ClockAddDelegate;
 @class Clock;
-@interface AddClockViewController : UIViewController <UITextFieldDelegate>{
+@interface AddClockViewController : UIViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate>{
  
 @private
     Clock *clock;
     UITextField  *clockName;
-    __unsafe_unretained id<ClockAddDelegate> delegate;
     
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *clockName;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (nonatomic, retain) Clock *clock;
-@property (nonatomic, assign) id<ClockAddDelegate> delegate;
+@property BOOL isGotoPickImager;
 
--(void)save;
--(void)cancel;
 
-@end
-
-@protocol ClockAddDelegate <NSObject>
-// recipe == nil on cancel
-- (void)clockAddViewController:(AddClockViewController *)addClockViewController didAddClock:(Clock *)clock;
+- (IBAction)takeImageForClock:(UIButton *)sender;
+- (void)save;
 
 @end

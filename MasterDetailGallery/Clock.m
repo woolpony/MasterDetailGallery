@@ -15,5 +15,7 @@
 @dynamic clockName;
 @dynamic createtime;
 @dynamic clocktostation;
+@dynamic imageName;
+@dynamic thumbNailImage;
 
 @end

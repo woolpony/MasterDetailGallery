@@ -9,6 +9,7 @@
 #import "PhotoViewController.h"
 
 #import "Station.h"
+#import "ImageHelper-Files.h"
 
 @interface PhotoViewController ()
 
@@ -16,16 +17,8 @@
 
 @implementation PhotoViewController
 
-@synthesize imageView,station;
+@synthesize imageView,station, clockNameLabel;
 
-+ (id)sharedInstance {
-    static id sharedInstance;
-    @synchronized(self) {
-        if (!sharedInstance)
-            sharedInstance = [[PhotoViewController alloc] init];
-        return sharedInstance;
-    }
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,17 +35,13 @@
 	// Do any additional setup after loading the view.
     
     self.title = @"Photo";
-    
-    imageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.backgroundColor = [UIColor blackColor];
-    
-    self.view = imageView;
+    self.clockNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    imageView.image = station.image;
+    imageView.image = [ImageHelper imageNamed:station.imageName];
+    self.clockNameLabel.text = station.stationName;
 }
 
 
@@ -62,7 +51,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    imageView.image = nil;
+    
 }
 
 - (void)didReceiveMemoryWarning

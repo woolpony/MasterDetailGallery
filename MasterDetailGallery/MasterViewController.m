@@ -10,6 +10,7 @@
 #import "Clock.h"
 #import "StationListViewController.h"
 #import "AddClockViewController.h"
+#import "ImageHelper-Files.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -28,10 +29,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
+    NSArray *buttonArray = [[NSArray alloc] initWithObjects:addButton,self.editButtonItem,nil];
+    
+    self.navigationItem.rightBarButtonItems = buttonArray;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,32 +49,12 @@
 {
 
     AddClockViewController *addController = [[AddClockViewController alloc] initWithNibName:@"AddClockView" bundle:nil];
-    addController.delegate = self;
 	
 	Clock *clock = [NSEntityDescription insertNewObjectForEntityForName:@"Clock" inManagedObjectContext:self.managedObjectContext];
 	addController.clock = clock;
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self.navigationController pushViewController:addController animated:YES];
     
-    
-    //    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-//    
-//    // If appropriate, configure the new managed object.
-//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-//    [newManagedObject setValue:@"New Clock" forKey:@"clockName"];
-//    [newManagedObject setValue:[NSDate date] forKey:@"createtime"];
-//    
-//    // Save the context.
-//    NSError *error = nil;
-//    if (![context save:&error]) {
-//         // Replace this implementation with code to handle the error appropriately.
-//         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-//    }
 }
 
 #pragma mark - Table View
@@ -102,6 +87,23 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        
+        
+        Clock *acolock = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSString *imageName = acolock.imageName;
+        if (imageName != nil) {
+            [self removeFileFromDocumentDir:imageName];
+        }
+        
+        //remove station file
+        NSMutableArray *stations = [[NSMutableArray alloc] initWithArray:[acolock.clocktostation allObjects]];
+        for (int i = 0; i < stations.count; i++) {
+            NSString * stationImageName = [[stations objectAtIndex:i] valueForKey:@"imageName"];
+            if (stationImageName != nil) {
+                [self removeFileFromDocumentDir:stationImageName];
+            }
+        }
+        
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
         NSError *error = nil;
@@ -112,6 +114,18 @@
             abort();
         }
     }   
+}
+
+-(void) removeFileFromDocumentDir:(NSString *)imageName
+{
+    NSString *filePath = [[ImageHelper documentsFolder] stringByAppendingPathComponent:imageName];
+    [ImageHelper listFile:[ImageHelper documentsFolder]];
+    
+    //delete file from documents directory
+    [ImageHelper removeFile:filePath];
+    //delete file from context
+    
+    [ImageHelper listFile:[ImageHelper documentsFolder]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -234,13 +248,7 @@
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"clockName"] description];
-}
-
-- (void)clockAddViewController:(AddClockViewController *)addClockViewController didAddClock:(Clock *)clock
-{
-
-    [self dismissViewControllerAnimated:YES completion:nil];
-
+    cell.imageView.image = [object valueForKey:@"thumbNailImage"];
 }
 
 @end

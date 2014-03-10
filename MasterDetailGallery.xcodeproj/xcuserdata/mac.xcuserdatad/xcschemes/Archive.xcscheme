@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C810A018AE544B003E7610"
-               BuildableName = "ClockInfo.app"
-               BlueprintName = "MasterDetailGallery"
+               BuildableName = "IPICSTA.app"
+               BlueprintName = "IPICSTA"
                ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "ClockInfo.app"
-            BlueprintName = "MasterDetailGallery"
+            BuildableName = "IPICSTA.app"
+            BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,8 +52,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "ClockInfo.app"
-            BlueprintName = "MasterDetailGallery"
+            BuildableName = "IPICSTA.app"
+            BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "ClockInfo.app"
-            BlueprintName = "MasterDetailGallery"
+            BuildableName = "IPICSTA.app"
+            BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

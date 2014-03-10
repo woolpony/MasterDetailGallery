@@ -24,6 +24,7 @@
 @property (strong, nonatomic) Clock *clock;
 @property (strong, nonatomic) Station *station;
 @property (strong, nonatomic) Station *oldstation;
+@property  BOOL isGoToPickImage;
 
 - (IBAction)buttonPush:(UIButton *)sender;
 - (IBAction)imageButtonPush:(id)sender;

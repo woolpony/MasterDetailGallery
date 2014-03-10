@@ -10,13 +10,16 @@
 #import "Clock.h"
 
 
+
 @implementation Station
 
 @dynamic createTime;
-@dynamic image;
 @dynamic stationName;
+@dynamic imageName;
 @dynamic thumbnailimage;
 @dynamic stationtoclock;
-@dynamic bigimage;
+
 
 @end
+
+
