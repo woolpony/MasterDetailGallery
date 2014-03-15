@@ -54,7 +54,7 @@
     // Create and set the table header view.
     if (tableHeaderView == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"StationListHeader" owner:self options:nil];
-        self.tableView.tableHeaderView = tableHeaderView;
+        //self.tableView.tableHeaderView = tableHeaderView;
         self.tableView.allowsSelectionDuringEditing = YES;
         
         [self.imageButton setImage:clock.thumbNailImage forState:UIControlStateNormal];

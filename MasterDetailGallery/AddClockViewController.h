@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Clock;
-@interface AddClockViewController : UIViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate>{
+@interface AddClockViewController : UIViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate>{
  
 @private
     Clock *clock;

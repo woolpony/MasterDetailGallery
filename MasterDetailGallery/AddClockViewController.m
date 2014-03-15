@@ -10,6 +10,8 @@
 #import "Clock.h"
 #import "ImageHelper-Files.h"
 
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 @implementation AddClockViewController
 
 @synthesize clock;
@@ -187,8 +189,7 @@
     
     
     clock.thumbNailImage = [self getSmallImageFromBigImage:selectedImage resultImagesize:200];
-    
-	
+
     [self dismissModalViewControllerAnimated:YES];
 }
 

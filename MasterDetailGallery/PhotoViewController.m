@@ -40,7 +40,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    imageView.image = [ImageHelper imageNamed:station.imageName];
+    
+    float screenheight = [[UIScreen mainScreen] bounds].size.height;
+    
+    UIImageView *uiimgeview = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 120.0, 320.0, screenheight- 120.0)];
+    
+    
+    [self.view addSubview:uiimgeview];
+    uiimgeview.image = [ImageHelper imageNamed:station.imageName];
     self.clockNameLabel.text = station.stationName;
 }
 
