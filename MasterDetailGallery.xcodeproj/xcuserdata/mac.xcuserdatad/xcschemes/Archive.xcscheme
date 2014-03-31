@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C810A018AE544B003E7610"
-               BuildableName = "IPICSTA.app"
+               BuildableName = "IPICSTATrial.app"
                BlueprintName = "IPICSTA"
                ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTA.app"
+            BuildableName = "IPICSTATrial.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTA.app"
+            BuildableName = "IPICSTATrial.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTA.app"
+            BuildableName = "IPICSTATrial.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>

@@ -48,13 +48,53 @@
 - (void)insertNewObject:(id)sender
 {
 
+    if (![self isAllowedToAddClock]) {
+        NSLog(@"Reached the max allowed");
+        [self showReachMaxClockAlertView];
+    }
+    else{
+    
     AddClockViewController *addController = [[AddClockViewController alloc] initWithNibName:@"AddClockView" bundle:nil];
 	
 	Clock *clock = [NSEntityDescription insertNewObjectForEntityForName:@"Clock" inManagedObjectContext:self.managedObjectContext];
 	addController.clock = clock;
     
     [self.navigationController pushViewController:addController animated:YES];
-    
+    }
+}
+
+#pragma mark - reach max clock, show alert View
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%ld",(long)buttonIndex);
+    if (buttonIndex  == 1) {
+        NSString *str = [NSString stringWithFormat:
+                         @"itms-apps://itunes.apple.com/us/app/ipicsta/id%d?ls=1&mt=8",839565582];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
+-(void) showReachMaxClockAlertView
+{
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Reached the max Clocks allowed"
+                                                   message:@"Get a full version from APP Store?"
+                                                  delegate:self
+                                         cancelButtonTitle:@"No, thanks."
+                                         otherButtonTitles:@"Buy it now!",nil];
+    [alert show];
+}
+
+-(BOOL) isAllowedToAddClock
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    long count = [sectionInfo numberOfObjects];
+    //NSLog(@"%ld",count);
+    if (count >= 10) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 #pragma mark - Table View
@@ -229,20 +269,22 @@
     }
 }
 
+/*
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-}
+}*/
 
-/*
+
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
  
  - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     // In the simplest, most efficient, case, reload the table view.
+    [self.tableView endUpdates];
     [self.tableView reloadData];
 }
- */
+
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {

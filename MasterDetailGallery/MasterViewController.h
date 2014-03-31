@@ -12,7 +12,7 @@
 #import "AddClockViewController.h"
 
 @class Clock;
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>{
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate,UIAlertViewDelegate>{
 
 
 @private

@@ -81,7 +81,7 @@
 		04A475B318D1F45400C69D80 /* 320x568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 320x568.png; sourceTree = "<group>"; };
 		04AB7AC418C3848900962793 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
 		04AB7AC518C3848900962793 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		04C810A118AE544B003E7610 /* IPICSTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPICSTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C810A118AE544B003E7610 /* IPICSTATrial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPICSTATrial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C810A418AE544B003E7610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04C810A618AE544B003E7610 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		04C810A818AE544B003E7610 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -150,7 +150,7 @@
 		04C810A218AE544B003E7610 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04C810A118AE544B003E7610 /* IPICSTA.app */,
+				04C810A118AE544B003E7610 /* IPICSTATrial.app */,
 				04C810CA18AE544B003E7610 /* MasterDetailGalleryTests.xctest */,
 			);
 			name = Products;
@@ -258,7 +258,7 @@
 			);
 			name = IPICSTA;
 			productName = MasterDetailGallery;
-			productReference = 04C810A118AE544B003E7610 /* IPICSTA.app */;
+			productReference = 04C810A118AE544B003E7610 /* IPICSTATrial.app */;
 			productType = "com.apple.product-type.application";
 		};
 		04C810C918AE544B003E7610 /* MasterDetailGalleryTests */ = {
@@ -285,7 +285,7 @@
 		04C8109918AE544B003E7610 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "pony wu";
 				TargetAttributes = {
 					04C810A018AE544B003E7610 = {
@@ -425,7 +425,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -438,7 +437,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -455,8 +454,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = IPICSTA;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = IPICSTATrial;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -465,7 +464,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -478,8 +476,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Luis Silva (G3NDX2KF9Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luis Silva (VTFZ7W8QH9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -490,9 +487,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = IPICSTA;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = IPICSTATrial;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -501,15 +500,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetailGallery/MasterDetailGallery-Prefix.pch";
 				INFOPLIST_FILE = "MasterDetailGallery/MasterDetailGallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "${PRODUCT_NAME}";
-				PROVISIONING_PROFILE = "DCEFBC7D-3F8A-4243-A520-5FE9765C1B21";
+				PROVISIONING_PROFILE = "6A7A0A1E-E936-4BCA-BC8D-C362097FC71A";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -520,14 +517,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luis Silva (VTFZ7W8QH9)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetailGallery/MasterDetailGallery-Prefix.pch";
 				INFOPLIST_FILE = "MasterDetailGallery/MasterDetailGallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "${PRODUCT_NAME}";
-				PROVISIONING_PROFILE = "DCEFBC7D-3F8A-4243-A520-5FE9765C1B21";
+				PROVISIONING_PROFILE = "6A7A0A1E-E936-4BCA-BC8D-C362097FC71A";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -536,7 +532,6 @@
 		04C810E018AE544B003E7610 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MasterDetailGallery.app/MasterDetailGallery";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -559,7 +554,6 @@
 		04C810E118AE544B003E7610 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MasterDetailGallery.app/MasterDetailGallery";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
