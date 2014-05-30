@@ -10,10 +10,13 @@
 
 #import <CoreData/CoreData.h>
 #import "AddClockViewController.h"
+#import "GADBannerView.h"
 
 @class Clock;
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate,UIAlertViewDelegate>{
-
+    
+    // 将其中一个声明为实例变量
+    GADBannerView *bannerView_;
 
 @private
     NSFetchedResultsController *fetchedResultsController;

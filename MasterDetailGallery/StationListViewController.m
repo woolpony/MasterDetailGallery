@@ -12,6 +12,7 @@
 #import "Station.h"
 #import "ImageHelper-Files.h"
 #import "AddClockViewController.h"
+#import "Constants.h"
 
 @interface StationListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -174,6 +175,44 @@
     return NO;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 50.0; // this should be the height of your admob view
+    
+    return height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section
+{
+    // 在屏幕顶部创建标准尺寸的视图。
+    // 在GADAdSize.h中对可用的AdSize常量进行说明。
+    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    
+    // 指定广告单元ID。
+    bannerView_.adUnitID = ADID;
+    
+    // 告知运行时文件，在将用户转至广告的展示位置之后恢复哪个UIViewController
+    // 并将其添加至视图层级结构。
+    bannerView_.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    // 请求测试广告。填入模拟器
+    // 以及接收测试广告的任何设备的标识符。
+    request.testDevices = [NSArray arrayWithObjects:
+                           GAD_SIMULATOR_ID,
+                           @"1beb37d2f9cc5b882e43f7e6b98ec508",
+                           nil];
+    
+    // 启动一般性请求并在其中加载广告。
+    [bannerView_ loadRequest:request];
+    
+    UIView *headerView = bannerView_; // init your view or reference your admob view
+    
+    return headerView;
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

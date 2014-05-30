@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04C810A018AE544B003E7610"
-               BuildableName = "IPICSTATrial.app"
+               BuildableName = "IPICSTA Free.app"
                BlueprintName = "IPICSTA"
                ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTATrial.app"
+            BuildableName = "IPICSTA Free.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTATrial.app"
+            BuildableName = "IPICSTA Free.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04C810A018AE544B003E7610"
-            BuildableName = "IPICSTATrial.app"
+            BuildableName = "IPICSTA Free.app"
             BlueprintName = "IPICSTA"
             ReferencedContainer = "container:MasterDetailGallery.xcodeproj">
          </BuildableReference>

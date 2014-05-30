@@ -12,13 +12,12 @@
 @class Station;
 @interface DetailViewController : UIViewController<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate>
 
+
 @property (strong, nonatomic) id detailItem;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scview;
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
-
-
 
 
 @property (strong, nonatomic) Clock *clock;

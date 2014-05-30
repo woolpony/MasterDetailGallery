@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
-
+#import "GADBannerView.h"
 
 @class Clock;
 
-@interface StationListViewController : UITableViewController <NSFetchedResultsControllerDelegate>{}
+@interface StationListViewController : UITableViewController <NSFetchedResultsControllerDelegate>{
+
+    // 将其中一个声明为实例变量
+    GADBannerView *bannerView_;
+}
+
+
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

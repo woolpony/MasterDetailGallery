@@ -22,6 +22,9 @@
     // Configure the navigation bar
     self.navigationItem.title = @"Add Clock";
     
+    
+    
+    
     UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
     self.clockName.delegate = self;
